@@ -11,7 +11,7 @@ framework:
 
         routing:
             # Route your messages to the transports
-             'App\Message\UserRegistered': sync
+#             'App\Message\UserRegistered': sync
 
 # when@test:
 #    framework:
