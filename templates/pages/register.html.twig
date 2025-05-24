@@ -1,0 +1,53 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}
+    Реєстрація
+{% endblock %}
+
+{% block body %}
+
+    <div class="container p-5">
+        <form style="background: var(--bs-light)" class="p-3 rounded" action="/register" method="post">
+            <h1 class="mb-5">Зареєструватися</h1>
+
+            <!-- Email input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="form-label" for="email">Електронна пошта</label>
+                <input name="email" type="email" id="email" class="form-control" />
+            </div>
+
+            <!-- Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="form-label" for="password">Пароль</label>
+                <input name="password" type="password" id="password" class="form-control" />
+            </div>
+
+            <!-- Name input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="form-label" for="name">Ім'я</label>
+                <input name="name" type="text" id="name" class="form-control" />
+            </div>
+
+            <!-- Lastname input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="form-label" for="lastname">Прізвище</label>
+                <input name="lastname" type="text" id="lastname" class="form-control" />
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-3">Зареєструватися</button>
+
+            <!-- Login redirect -->
+            <div class="text-center">
+                <p><a href="/login">Авторизуватися</a></p>
+            </div>
+        </form>
+        <style>
+            body {
+                background-image: url("/img/books.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
+    </div>
+{% endblock %}

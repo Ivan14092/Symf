@@ -2,16 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        return $this->render('home.html.twig', [
+        return $this->render('main.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
@@ -33,8 +35,12 @@ class HomeController extends AbstractController
     }
 
     #[Route('/subscription', name: 'app_subscription')]
-    public function subscription(): Response
+    public function subscription(#[CurrentUser] ?User $user): Response
     {
+        if ($user === null) {
+            return $this->redirectToRoute('login');
+        }
+
         return $this->render('subscription.html.twig', [
             'controller_name' => 'HomeController',
         ]);

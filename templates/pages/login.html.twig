@@ -1,0 +1,49 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}
+    Авторизація
+{% endblock %}
+
+{% block body %}
+
+    <div class="container p-5">
+        <form style="background: var(--bs-light)" class="p-3 rounded" method="post" action="/login">
+            <h1 class="mb-5">Увійти в акаунт</h1>
+            <!-- Email input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="form-label" for="form2Example1">Електронна пошта</label>
+                <input name="email" type="email" id="form2Example1" class="form-control"/>
+            </div>
+
+            <!-- Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="form-label" for="form2Example2">Пароль</label>
+                <input name="password" type="password" id="form2Example2" class="form-control"/>
+            </div>
+
+            <!-- 2 column grid layout for inline styling -->
+            <div class="row mb-4">
+                <div class="col">
+                    <!-- Simple link -->
+                    <a href="#">Забули пароль?</a>
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Увійти
+            </button>
+
+            <!-- Register buttons -->
+            <div class="text-center">
+                <p><a href="/register">Зареєструватися!</a></p>
+            </div>
+        </form>
+        <style>
+            body {
+                background-image: url("/img/books.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
+    </div>
+{% endblock %}
