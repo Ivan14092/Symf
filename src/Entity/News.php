@@ -13,9 +13,9 @@ class News
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 1200)]
     private string $title;
-    #[ORM\Column]
+    #[ORM\Column(length: 1200)]
     private string $content;
     #[ORM\Column]
     private int $publishedAt;
@@ -29,6 +29,9 @@ class News
     private int $createdAt;
     #[ORM\Column]
     private int $updatedAt;
+
+    #[ORM\Column(nullable: true, length: 1200)]
+    private string $imgUrl;
 
     public function getId(): ?int
     {
@@ -113,5 +116,15 @@ class News
     public function setUpdatedAt(int $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    public function getImgUrl(): string
+    {
+        return $this->imgUrl;
+    }
+
+    public function setImgUrl(string $imgUrl): void
+    {
+        $this->imgUrl = $imgUrl;
     }
 }

@@ -10,78 +10,22 @@
     <div class="container">
         <div class="row py-5">
             <h1 class="text-center mb-5">Новини</h1>
+
+            {% for new in news %}
+
             <div class="col-6">
 
                 <div class="card news-card  mb-3">
-                    <img src="https://kneu-edu-cdn.pp.ua/files/slider/image/Banerinasayt32_1.png" class="news-img card-img-top" alt="...">
+                    <img src="{{ new.imgUrl }}" class="news-img card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">День відкритих дверей КНЕУ!</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque exercitationem facere vero. Aperiam assumenda aut, autem cumque deleniti distinctio eaque earum fuga id ipsum nisi optio quia quod quos, velit.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <h5 class="card-title">{{ new.title}}</h5>
+                        <p class="card-text">{{ new.content }}</p>
                     </div>
                 </div>
 
             </div>
-            <div class="col-6">
 
-                <div class="card news-card  mb-3">
-                    <img src="https://spubl.com.ua/web/uploads/global/kneu_en.jpg" class="news-img card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Congratulations on the anniversary of Vadym Hetman Kyiv National Economic University — the first partner of Scientific Publications!</h5>
-                        <p class="card-text">On today's 115th anniversary of the Vadym Hetman Kyiv National Economic University, we would like to congratulate our partner and recall the conclusion of the first memorandum with an institution of higher education in the history of the Scientific Publications company.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-6">
-
-                <div class="card news-card  mb-3">
-                    <img src="https://static.ukrinform.com/photos/2023_02/thumb_files/630_360_1677322008-815.jpg" class="news-img card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Єдині новини. Телемарафон</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus assumenda commodi earum exercitationem facere impedit nam porro! A ex molestiae nostrum quam quibusdam reiciendis sapiente temporibus vitae. Ducimus, illo odit!</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-6">
-
-                <div class="card news-card  mb-3">
-                    <img src=https://detector.media/doc/images/news/archive/2021/238939/i75_ArticleImage_238939.webp class="news-img card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Факти новин</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolores ea nulla officia quia similique sunt voluptate. Accusamus adipisci fuga fugiat mollitia perferendis provident quo quos similique, temporibus ullam veniam!</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-6">
-
-                <div class="card news-card  mb-3">
-                    <img src="https://forbes.ua/static/storage/thumbs/2880x1564/7/26/aab66b90-6d1e27c3a3f5b9fcfe3cd24be703d267.jpg?v=0258_1" class="news-img card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">США домовляються із союзниками по НАТО про постачання Patriot Україні – Рубіо</h5>
-                        <p class="card-text">Сполучені Штати не мають доступних систем протиповітряної оборони Patriot для передачі Україні, тому співпрацюють із союзниками по НАТО, щоб забезпечити постачання таких систем. Про це заявив державний секретар Марко Рубіо під час виступу в Сенаті США.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-6">
-
-                <div class="card news-card  mb-3">
-                    <img src="https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/af9e/live/abbb90a0-317b-11f0-acb1-9df87a18f719.jpg.webp" class="news-img card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Стамбул у режимі очікування. Чи відбудуться переговори між Україною і Росією</h5>
-                        <p class="card-text">Прессекретар Володимира Зеленського Сергій Нікіфоров одразу ж назвав цю інформацію "черговим російським фейком". Трохи згодом Москва повідомила, що початок переговорів переноситься на другу половину дня – нібито на запит турецької сторони.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

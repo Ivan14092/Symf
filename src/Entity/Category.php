@@ -17,8 +17,11 @@ class Category
     private string $name;
     #[ORM\Column]
     private string $description;
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private int $parentId;
+
+    #[ORM\Column(nullable: true, length: 1200)]
+    private string $url;
 
     public function getId(): ?int
     {
@@ -53,5 +56,15 @@ class Category
     public function setParentId(int $parentId): void
     {
         $this->parentId = $parentId;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(string $url): void
+    {
+        $this->url = $url;
     }
 }
