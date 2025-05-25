@@ -21,16 +21,6 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
         $manager->persist($admin);
         $manager->persist($user);
         $manager->flush();
-
-//        $adminUser = new User();
-//        $adminUser->setName('Admin');
-//        $adminUser->setLastname('Admin');
-//        $adminUser->setEmail('admin@admin.admin');
-//        $adminUser->setRole($admin);
-//        $adminUser->setPassword('admin');
-//        $adminUser->setPhone('+380911111111');
-//        $manager->persist($adminUser);
-//        $manager->flush();
     }
 
     public static function getGroups(): array
