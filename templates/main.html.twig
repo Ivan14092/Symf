@@ -10,6 +10,7 @@
 
         <div class="quiz-container" id="quiz">
             <div class="quiz-header">
+                <div><button class="btn btn-danger mb-3" id="forceReset">Скинути результати опитувальника за замовчуванням</button></div>
                 <h2 class="mb-5">Пройдіть опитування для отримання автоматизованої рекомендаційної стрічки новин</h2>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
@@ -247,6 +248,17 @@
                     location.reload()
                 }
 
+            }
+        }
+
+        const forceResetButton = document.getElementById('forceReset')
+        forceResetButton.onclick = async function () {
+            try {
+                await fetch("/api/save-quiz-result/reset");
+            } catch (err) {
+                console.error(err)
+            } finally {
+                location.reload()
             }
         }
     </script>
