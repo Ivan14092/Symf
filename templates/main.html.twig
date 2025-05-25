@@ -169,7 +169,6 @@
         }
 
         function selectOption(selectedButton, optionIndex) {
-            console.log(selectedButton)
             const buttons = optionsEl.getElementsByClassName('option');
             Array.from(buttons).forEach(button => button.classList.remove('selected'));
             selectedButton.classList.add('selected');
@@ -238,15 +237,17 @@
         }
 
         const resetButton = document.getElementById('resetButton')
-        resetButton.onclick = async function () {
-            try {
-                await fetch("/api/save-quiz-result/reset");
-            } catch (err) {
-                console.error(err)
-            } finally {
-                location.reload()
-            }
+        if (resetButton !== null) {
+            resetButton.onclick = async function () {
+                try {
+                    await fetch("/api/save-quiz-result/reset");
+                } catch (err) {
+                    console.error(err)
+                } finally {
+                    location.reload()
+                }
 
+            }
         }
     </script>
 {% endblock %}
