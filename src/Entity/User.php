@@ -21,8 +21,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private string $email;
 
-    #[ORM\Column]
-    private string $phone;
+    #[ORM\Column(nullable: true)]
+    private ?string $phone = null;
 
     #[ORM\ManyToOne(targetEntity: Role::class, cascade: ['persist'])]
     private Role $role;
@@ -38,7 +38,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[SerializedName('password')]
     #[Assert\NotBlank]
-    private string $plainPassword;
+    private ?string $plainPassword = null;
 
     public function getId(): ?int
     {
@@ -96,12 +96,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPhone(): string
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
-    public function setPhone(string $phone): self
+    public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
         return $this;
@@ -138,5 +138,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->plainPassword = $plainPassword;
         return $this;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
     }
 }
