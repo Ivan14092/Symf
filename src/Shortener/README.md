@@ -1,5 +1,23 @@
 # Symfony URL Shortener
 
+## Архітектура
+
+- Інтерфейси:
+   - UrlEncoderInterface, UrlDecoderInterface — контракти для скорочення та відновлення URL.
+   - UrlValidatorInterface — перевірка формату URL та існування ресурсу.
+   - StorageInterface — абстракція для збереження (БД, файл, інше).
+
+- Реалізації:
+   - UrlEncoder, UrlDecoder — сервіси бізнес-логіки.
+   - UrlValidator — валідація формату та HTTP-відповіді (200, 201, 301, 302).
+   - DbStorage — збереження у базу даних через Doctrine.
+   
+
+- Контролер:
+   - UrlShortenerController — REST API:
+      - POST /encode — створити коротке посилання
+      - GET /decode/{code} — отримати оригінальний URL
+
 ## Встановлення
 
 1. Клонувати репозиторій:

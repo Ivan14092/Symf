@@ -1,11 +1,17 @@
 services:
+
+    App\Shortener\Interfaces\StorageInterface: '@App\Shortener\Services\DbStorage'
+    App\Shortener\Interfaces\UrlValidatorInterface: '@App\Shortener\Services\UrlValidator'
+
     App\Shortener\Services\UrlValidator: ~
     App\Shortener\Services\DbStorage: ~
+
     App\Shortener\Services\UrlEncoder:
         arguments:
             $length: 8
-            $validator: '@App\Shortener\Services\UrlValidator'
-            $storage: '@App\Shortener\Services\DbStorage'
+            $validator: '@App\Shortener\Interfaces\UrlValidatorInterface'
+            $storage: '@App\Shortener\Interfaces\StorageInterface'
+
     App\Shortener\Services\UrlDecoder:
         arguments:
-            $storage: '@App\Shortener\Services\DbStorage'
+            $storage: '@App\Shortener\Interfaces\StorageInterface'
