@@ -1,29 +1,39 @@
 <?php
+
 namespace App\Shortener\Services;
 
 use App\Shortener\Interfaces\StorageInterface;
-use App\Shortener\Entity\ShortUrl;
-use Doctrine\ORM\EntityManagerInterface;
+use PDO;
 
 class DbStorage implements StorageInterface
 {
-    private EntityManagerInterface $em;
+    private PDO $connection;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(PDO $connection)
     {
-        $this->em = $em;
+        $this->connection = $connection;
     }
 
     public function save(string $code, string $url): void
     {
-        $shortUrl = new ShortUrl($code, $url);
-        $this->em->persist($shortUrl);
-        $this->em->flush();
+        $stmt = $this->connection->prepare("INSERT INTO urls (code, url) VALUES (:code, :url)");
+        $stmt->execute(['code' => $code, 'url' => $url]);
     }
 
     public function findUrlByCode(string $code): ?string
     {
-        $shortUrl = $this->em->getRepository(ShortUrl::class)->find($code);
-        return $shortUrl?->getUrl();
+        $stmt = $this->connection->prepare("SELECT url FROM urls WHERE code = :code LIMIT 1");
+        $stmt->execute(['code' => $code]);
+        $result = $stmt->fetchColumn();
+
+        return $result !== false ? $result : null;
+    }
+
+    public function existsCode(string $code): bool
+    {
+        $stmt = $this->connection->prepare("SELECT COUNT(*) FROM urls WHERE code = :code");
+        $stmt->execute(['code' => $code]);
+
+        return $stmt->fetchColumn() > 0;
     }
 }

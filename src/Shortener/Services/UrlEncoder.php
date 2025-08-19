@@ -1,12 +1,11 @@
 <?php
+
 namespace App\Shortener\Services;
 
-use App\Shortener\Interfaces\UrlEncoderInterface;
 use App\Shortener\Interfaces\UrlValidatorInterface;
 use App\Shortener\Interfaces\StorageInterface;
-use InvalidArgumentException;
 
-class UrlEncoder implements UrlEncoderInterface
+class UrlEncoder
 {
     private int $length;
     private UrlValidatorInterface $validator;
@@ -14,28 +13,28 @@ class UrlEncoder implements UrlEncoderInterface
 
     public function __construct(int $length, UrlValidatorInterface $validator, StorageInterface $storage)
     {
-        if ($length < 4) {
-            throw new InvalidArgumentException('Length must be at least 4');
-        }
         $this->length = $length;
         $this->validator = $validator;
         $this->storage = $storage;
     }
 
-    public function encode(string $url): string
+    public function encode(string $url): ?string
     {
         if (!$this->validator->validate($url)) {
-            throw new InvalidArgumentException('Invalid URL format');
+            return null;
         }
 
-        $base64 = base64_encode($url . microtime(true));
-        $safe = strtr($base64, '+/', '-_');
-        $safe = rtrim($safe, '=');
-
-        $code = substr($safe, 0, $this->length);
+        do {
+            $code = $this->generateCode($this->length);
+        } while ($this->storage->existsCode($code));
 
         $this->storage->save($code, $url);
 
         return $code;
+    }
+
+    private function generateCode(int $length): string
+    {
+        return substr(bin2hex(random_bytes($length)), 0, $length);
     }
 }
